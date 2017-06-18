@@ -67,4 +67,11 @@ h1 {
 	.panel {
 		width: 400px;
 	}
+	#addTrain {
+		padding: 20px 160px 20px 160px;
+
+	}
+	#submit {
+		text-align: center;
+	}
 }
