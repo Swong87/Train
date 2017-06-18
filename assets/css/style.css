@@ -1,8 +1,70 @@
+.jumbotron {
+	background-color: black;
+	color: white;
+	width: 1000px;
+	margin: 0 auto;
+	border-radius: 6px;
+}
+h1 {
+	font-size: 80px;
+}
 .panel-default > .panel-heading {
-  background-color: steelblue;
-  color: white;
-  font-weight: bold;
+	background-color: steelblue;
+	color: white;
+	font-weight: bold;
+	width: 1000px;
+	margin: 0 auto;
+	border-radius: 6px;
 }
 #headImage {
 	background-image: ("assets/images/trainLogo.png");
+}
+.panel {
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 2%;
+}
+#table-header {
+	background-color: steelblue;
+	color: white;
+	font-weight: bold;
+}
+@media screen and (max-width: 980px){
+	.jumbotron {
+		width: 800px;
+	}
+	.panel-default > .panel-heading {
+		width: 800px;
+	}
+	.panel {
+		width: 800px;
+	}
+}
+@media screen and (max-width: 768px){
+	.jumbotron {
+		width: 600px;
+	}
+	h1 {
+		font-size: 60px;
+	}
+	.panel-default > .panel-heading {
+		width: 600px;
+	}
+	.panel {
+		width: 600px;
+	}
+}
+@media screen and (max-width: 640px){
+	.jumbotron {
+		width: 400px;
+	}
+	h1 {
+		font-size: 60px;
+	}
+	.panel-default > .panel-heading {
+		width: 400px;
+	}
+	.panel {
+		width: 400px;
+	}
 }

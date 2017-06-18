@@ -14,21 +14,29 @@ $(document).ready(function() {
   	var database = firebase.database();
 // On click push user input to Firebase
   	$("#addTrain").on("click", function(){
+  		// Prevents page from refreshing
 		event.preventDefault();
 
 		var nameInput = $("#nameInput").val().trim(),
 			destinationInput = $("#destinationInput").val().trim(),
 			trainTimeInput = $("#trainTimeInput").val().trim(),
 			frequencyInput = $("#frequencyInput").val().trim(),
+			// Converts the user input to time data in momentjs
 			timeConverted = moment(trainTimeInput, "hh:mm").subtract(1, "years"),
+			// Stores the current time
 			currentTime = moment(),
+			// Stores the time difference (in minutes) from when the train started to the current time
 			timeDiff = moment().diff(moment(timeConverted), "minutes"),
+			// Stores the modulo of the time difference and the frequency
 			timeRemainder = timeDiff % frequencyInput,
+			// Stores the amount of minutes until the next train
 			minutes = frequencyInput - timeRemainder,
+			// Stores the time with the added minutes until the next train
 			nextTrain = moment().add(minutes, "minutes"),
+			// Stores the formatted time data
 			nextTrainTime = moment(nextTrain).format("hh:mm");
 
-
+// Pushes the submitted data to firebase
 		database.ref().push({
 			name: nameInput,
 			destination: destinationInput,
@@ -39,9 +47,9 @@ $(document).ready(function() {
 		})
 
 	})
-
+// Whenever data is added, start this function
 	database.ref().on("child_added", function(childSnapshot) {
-    // full list of items to the well
+    // Start filling the table with the data that was added to firebase
 	    $("#trainTable").append("<tr><td id='trainName'>" + childSnapshot.val().name +
 	      "</td><td id='destination'>" + childSnapshot.val().destination +
 	      "</td><td id='frequency'>" + childSnapshot.val().frequency +
@@ -51,15 +59,6 @@ $(document).ready(function() {
     }, function(errorObject) {
     	console.log("Errors handled: " + errorObject.code);
     });
-
-	/*database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-		$("#trainName").html(snapshot.val().name);
-		$("#destination").html(snapshot.val().destination);
-		$("#frequency").html(snapshot.val().frequency);
-		$("#arrival").html(snapshot.val().monthlyRate);
-		$("#minutes").html(snapshot.val().monthlyRate);
-	});	*/
-
 
 
 })
