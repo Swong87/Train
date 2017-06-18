@@ -33,6 +33,9 @@ h1 {
 	color: white;
 	font-weight: bold;
 }
+footer{
+	color: white;
+}
 @media screen and (max-width: 980px){
 	.jumbotron {
 		width: 800px;
